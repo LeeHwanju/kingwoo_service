@@ -26,8 +26,17 @@ var obj_data = {
 
 * NOTION
 * CANNOT USE dict_ret IMMEDIATELY, NEED VALIDATION
+
+SAMPLE dict_case
+
+1. 
 var dict_case = {
-  data: [1, 10, 4, 1111, 6666, 123, 12322]
+  data: [1, 10, 4]
+};
+
+2.
+var dict_case = {
+  data: [3, 10, 777]
 };
 
 var dict_ret = {
@@ -36,6 +45,7 @@ var dict_ret = {
 };
 */
 
+//
 var sample_input1 = {
   interval: {
     minimum: 16,
