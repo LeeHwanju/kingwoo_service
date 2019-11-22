@@ -11,6 +11,7 @@ var connection = mysql.createConnection(dbconfig);
 const indexRouter = require("./routes/index");
 const movieRouter = require("./routes/movie");
 const testRouter = require("./routes/test");
+const validRouter = require("./routes/valid_0");
 var app = express();
 app.use(require("connect-history-api-fallback")());
 
@@ -33,7 +34,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/api/movies", movieRouter);
 app.use("/api/test", testRouter);
-// app.use("api/valid");
+app.use("/api/valid", validRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -112,6 +112,11 @@ function make_combination(obj_data) {
   return ret;
 }
 
-vv = make_combination(sample_input1);
-console.log(vv);
-console.log(vv.cases.length);
+// test code
+// vv = make_combination(sample_input1);
+// console.log(vv);
+// console.log(vv.cases.length);
+
+module.exports = {
+  make_combination
+};

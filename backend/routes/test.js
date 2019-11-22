@@ -27,7 +27,7 @@ router.get("/search", function(req, res) {
 
     function(err, rows) {
       if (err) throw err;
-      console.log(rows);
+      // console.log(rows);
       res.send(rows);
     }
   );

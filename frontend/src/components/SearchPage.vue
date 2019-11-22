@@ -10,16 +10,37 @@
     </div>-->
     <div v-for="lec in result" :key="lec.id">
       <div v-bind:id="lec.id">
-        <label
-          v-bind:for="lec.id"
-        >{{lec.group_name}} {{lec.classification}} {{lec.lecture_name}} {{lec.credit}} {{lec.lecturer}} {{lec.timeinfo}}</label>
+        <label v-bind:for="lec.id">
+          {{ lec.group_name }} {{ lec.classification }} {{ lec.lecture_name }}
+          {{ lec.credit }} {{ lec.lecturer }} {{ lec.timeinfo }}
+        </label>
         <input type="checkbox" v-bind:id="lec.id" v-bind:value="lec.id" v-model="checkedLecture" />
         <!-- <button v-bint:id="lec.id" v-on:click="addToCart(lec.id)">add</button> -->
       </div>
     </div>
-    <p>selected lecture</p>
-    <p>{{checkedLecture}}</p>
-    <button @click="submitToServer">SUBMIT</button>
+    <p>SELECTED LECTURES</p>
+    <input
+      type="number"
+      min="2"
+      max="27"
+      step="1"
+      placeholder="minimum credit"
+      required
+      v-model="mini"
+    />
+    <input
+      type="number"
+      min="2"
+      max="27"
+      step="1"
+      placeholder="maximum credit"
+      required
+      width="30px"
+      v-model="maxi"
+    />
+    <p>{{ checkedLecture }}</p>
+    <button @click="getValid_0">SUBMIT</button>
+    <div>{{ val_result }}</div>
   </div>
 </template>
 
@@ -32,7 +53,9 @@ export default {
       axios({
         method: "get",
         url: "http://localhost:3000/api/test/search",
-        params: { keyword: this.searching }
+        params: {
+          keyword: this.searching
+        }
       })
         .then(response => {
           this.result = response.data;
@@ -40,6 +63,22 @@ export default {
         .catch(error => {
           // handle errors
         });
+    },
+
+    getValid_0() {
+      axios({
+        method: "get",
+        url: "http://localhost:3000/api/valid/valid0",
+        params: {
+          keyword: this.checkedLecture,
+          mini: this.mini,
+          maxi: this.maxi
+        }
+      })
+        .then(response => {
+          this.val_result = response.data;
+        })
+        .catch(error => {});
     },
     // addToCart(id, name) {
     //   alert("add " + name + " success");
@@ -60,6 +99,7 @@ export default {
   data: function() {
     return {
       result: {},
+      val_result: {},
       checkedLecture: []
     };
   }
