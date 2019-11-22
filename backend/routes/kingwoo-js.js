@@ -45,7 +45,6 @@ var dict_ret = {
 };
 */
 
-//
 var sample_input1 = {
   interval: {
     minimum: 16,
@@ -89,7 +88,7 @@ function make_combination(obj_data) {
     var int_cur_len = ret.cases.length;
 
     for (var x = 0; x < int_cur_len; x++) {
-      var obj_cur_case = ret.cases.shift();
+      var obj_cur_case = ret.cases.shift(); // 배열의 첫번째 원소 삭제 delete first element from array
       var list_tmp_case = obj_cur_case.data;
       var int_lec_code = sequence[i];
       var list_lec_pks = obj_data.data[int_lec_code];
@@ -104,11 +103,13 @@ function make_combination(obj_data) {
         ret.cases.push(obj_tmp_case);
       }
       ret.cases.push({ data: list_tmp_case });
+
       //   console.log("--------------------------------");
       //   console.log(ret.cases);
       //   console.log();
     }
   }
+
   return ret;
 }
 
