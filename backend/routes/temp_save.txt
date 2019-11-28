@@ -1,0 +1,185 @@
+//----------------------------------------
+      // .then(async function(argu) {
+      //   // ! STEP 2 function start
+      //   // ! 주어진 케이스에서 학점범위 벗어나는 것을 drop
+      //   console.log("STEP", argu[0]);
+      //   console.log("with this argument ", "\n", argu[1]);
+      //   var interval = await argu[1].interval;
+      //   var array_all_cases = await argu[1].cases;
+
+      //   async.forEach(
+      //     array_all_cases,
+      //     function(item, key, callback) {
+      //       var credit_list = [];
+      //       async.forEach(
+      //         item.data,
+      //         function(cur_id, key, callback) {
+      //           connection.query(
+      //             "SELECT credit from dku_timetable_m where id = ?",
+      //             [parseInt(cur_id)], // cases[x].data
+      //             function(err, rows) {
+      //               if (err) throw err;
+      //               console.log(
+      //                 "  in sql ID is ",
+      //                 cur_id,
+      //                 "credit is ",
+      //                 rows[0].credit
+      //               );
+      //               credit_list.push(rows[0].credit);
+      //             }
+      //           );
+      //         },
+      //         function(err) {
+      //           if (err) console.error(err.message);
+      //           if (
+      //             credit_list.reduce((a, b) => a + b, 0) >=
+      //               interval.minimum &&
+      //             credit_list.reduce((a, b) => a + b, 0) <= interval.maximum
+      //           ) {
+      //             list_credit_checked.push(item.data);
+      //           }
+      //         }
+      //       );
+      //     },
+      //     function(err) {
+      //       if (err) console.error(err.message);
+      //       // configs is now a map of JSON data
+      //       mother_callback(); // res.send()
+      //     }
+      //   );
+
+      //   // ! try 3
+      //   // async.each(
+      //   //   array_all_cases,
+      //   //   (each_case, callback) => {
+      //   //     var credit_list = [];
+      //   //     async.each(each_case.data, (cur_id, callback) => {
+      //   //       connection.query(
+      //   //         "SELECT credit from dku_timetable_m where id = ?",
+      //   //         [parseInt(cur_id)], // cases[x].data
+      //   //         function(err, rows) {
+      //   //           if (err) throw err;
+      //   //           console.log(
+      //   //             "  in sql ID is ",
+      //   //             cur_id,
+      //   //             "credit is ",
+      //   //             rows[0].credit
+      //   //           );
+      //   //           credit_list.push(rows[0].credit);
+      //   //         }
+      //   //       );
+      //   //     });
+      //   //   },
+      //   //   () => {}
+      //   // );
+
+      //   array_all_cases.forEach(function(item) {
+      //     // ! try 2
+      //     // async.waterfall(
+      //     //   [
+      //     //     function(callback2) {
+      //     //       var credit_list = [];
+      //     //       console.log(item, "-------------");
+      //     //       callback2(null, item.data, credit_list);
+      //     //     },
+      //     //     function(data, list, callback2) {
+      //     //       console.log("waterfall 222");
+      //     //       console.log(data);
+      //     //       callback2(null, data, list);
+      //     //     },
+      //     //     function(data, credit_list, callback2) {
+      //     //       console.log("waterfall 333");
+      //     //       // TODO 여기서 data.forEach로 부르는게 문제임
+      //     //       // TODO 1. 쿼리를 수정한다. 2. 다른 방법을 찾아본다.
+      //     //       async.forEachOf(
+      //     //         data,
+      //     //         async (cur_id, key, callback) => {
+      //     //           await connection.query(
+      //     //             "SELECT credit from dku_timetable_m where id = ?",
+      //     //             [parseInt(cur_id)], // cases[x].data
+      //     //             function(err, rows) {
+      //     //               if (err) throw err;
+      //     //               console.log(
+      //     //                 "  in sql ID is ",
+      //     //                 cur_id,
+      //     //                 "credit is ",
+      //     //                 rows[0].credit
+      //     //               );
+      //     //               credit_list.push(rows[0].credit);
+      //     //             }
+      //     //           );
+      //     //         },
+      //     //         function() {
+      //     //           callback2(null);
+      //     //         }
+      //     //       );
+      //     //     }
+      //     //   ],
+      //     //   function(err) {
+      //     //     if (err) {
+      //     //       console.log("error:", err);
+      //     //     }
+      //     //   }
+      //     // );
+      //     // ! try 1
+      //     // console.log(item, "-------------");
+      //     // var credit_list = [];
+      //     // credit_valid_promises(0, item.data)
+      //     //   .then(e => {
+      //     //     var cur_data = e[1];
+      //     //     cur_data.forEach(ret => {
+      //     //       forloop_callback2(ret, credit_list);
+      //     //     });
+      //     //   })
+      //     //   .then(() => {
+      //     //     var summation = credit_list.reduce((a, b) => a + b, 0);
+      //     //     return summation < interval.minimum ||
+      //     //       summation > interval.maximum
+      //     //       ? list_credit_checked.push(item)
+      //     //       : 0;
+      //     //   });
+      //     // await item.data.forEach(function(ret) {
+      //     //   forloop_callback2(ret, credit_list);
+      //     // });
+      //     // var summation = await credit_list.reduce((a, b) => a + b, 0);
+      //     // return summation < interval.minimum || summation > interval.maximum
+      //     //   ? list_credit_checked.push(item)
+      //     //   : 0;
+      //   });
+
+      //   // return [argu[0] + 1, list_credit_checked];
+      //   return [argu[0], list_credit_checked];
+      // })
+
+      // // await array_all_cases.forEach(async function(e) {
+      // //   var array_cur_case = await e.data;
+      // //   await console.log("DATA HANDLE", e, interval); // DATA HANDLE [ 2198, 2194 ] { minimum: '2', maximum: '6' }
+      // //   await credit_valid_promises(0, array_cur_case) // cummalative , credit_list
+      // //     .then(function(argu) {
+      // //       var credit_list = [];
+      // //       console.log("sdfsdljlsdfl", argu[1]);
+      // //       argu[1].data.forEach(function(ret) {
+      // //       });
+      // //       console.log("   credit list : ", credit_list);
+
+      // //       return [argu[1], credit_list];
+      // //     })
+      // //     .then(function(argu) {
+      // //       var summation = argu[1].reduce((a, b) => a + b, 0);
+      // //       console.log("     summation is ", summation);
+      // //       return [argu[1], summation];
+      // //     })
+      // //     .then(function(argu) {
+      // //       if (argu[1] >= interval.mini && argu[1] <= interval.maxi) {
+      // //         list_credit_checked.push([argu[0]]);
+      // //       }
+      // //     });
+      // // });
+
+      // // .then(function(argu) {
+      // //   callback(argu[1]); // res.send() 로 넘어가는 부분
+      // // })
+      // .catch(function(err) {
+      //   //
+      //   console.log(err);
+      // });

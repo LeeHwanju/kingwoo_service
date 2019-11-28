@@ -4,6 +4,7 @@ import MovieListPage from "@/components/MovieListPage";
 import DetailMoviePage from "@/components/DetailMoviePage";
 import testPage from "@/components/testPage";
 import SearchPage from "@/components/SearchPage";
+import tabletest from "@/components/tabletest";
 Vue.use(Router);
 
 export default new Router({
@@ -28,6 +29,11 @@ export default new Router({
       path: "/search",
       name: "search",
       component: SearchPage
+    },
+    {
+      path: "/table",
+      name: "table",
+      component: tabletest
     }
   ]
 });

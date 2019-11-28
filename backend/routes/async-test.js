@@ -10,6 +10,11 @@ for_next_step(1, [1, 2, 3])
     console.log(resolved[0]);
     return [resolved[0] + 1, resolved[1]]; // 리턴할때도 계속 묶어서 줘야한다.
   })
-  .then(function(resolved) {
-    console.log(resolved[0], resolved[1]);
-  });
+  .then(
+    function(resolved) {
+      console.log(resolved[0], resolved[1]);
+    },
+    function(argu) {
+      console.log("last");
+    }
+  );

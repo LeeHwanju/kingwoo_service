@@ -12,6 +12,7 @@ const indexRouter = require("./routes/index");
 const movieRouter = require("./routes/movie");
 const testRouter = require("./routes/test");
 const validRouter = require("./routes/valid_0");
+const valid_newRouter = require("./routes/valid_new");
 var app = express();
 app.use(require("connect-history-api-fallback")());
 
@@ -35,6 +36,7 @@ app.use("/", indexRouter);
 app.use("/api/movies", movieRouter);
 app.use("/api/test", testRouter);
 app.use("/api/valid", validRouter);
+app.use("/api/valid_new", valid_newRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
